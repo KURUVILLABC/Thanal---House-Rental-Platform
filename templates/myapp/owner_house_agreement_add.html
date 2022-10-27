@@ -1,0 +1,39 @@
+{% extends 'myapp/owner_base.html' %}
+{% load static %}
+{% block title %}Add Agreement{% endblock %}
+{% block body %}
+<center>
+    <!--#10. house_agreement - id, house_id, user_id, ag_dt, rent_dt, rent_advance, rent_amt, duration, dt, tm, status-->
+    <h2><font color="#366092">Agreement Add</font></h2>
+<div class="container">
+    <form name="frm" role="form" action="{% url 'owner_house_agreement_add' %}" method="post" >
+            {% csrf_token %}
+        <div class="form-group">
+            <label for="rent_advance">Advance</label>
+            <input class="form-control" type="text"  name="rent_advance" placeholder="rent_advance" required="required" id="rent_advance">
+        </div>
+        <div class="form-group">
+            <label for="rent_amt">Rent</label>
+            <input class="form-control" type="text"  name="rent_amt" placeholder="rent_amt" required="required" id="rent_amt">
+        </div>
+        <div class="form-group">
+            <label for="duration">Duration</label>
+            <input class="form-control" type="text"  name="duration" placeholder="duration" required="required" id="duration">
+        </div>
+        <div class="form-group">
+            <label for="ag_dt">Agreement Date</label>
+            <input class="form-control" type="date"  name="ag_dt" placeholder="ag_dt" required="required" id="ag_dt">
+        </div>
+        <div class="form-group">
+            <label for="rent_dt">Rent Interval(Number of Months)</label>
+            <input class="form-control" type="number"  name="rent_dt" placeholder="rent_dt" required="required" id="rent_dt">
+        </div>
+<input type="hidden"  name="house_request_id" value="{{house_request_id}}" >
+        {{msg}}
+        <button type="submit" class="btn btn-info" id="bt" name="bt">Send Agreement</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+
+    </form>
+</div>
+</center>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'myapp/owner_base.html' %}
+{% load static %}
+{% block title %}House Picture Add{% endblock %}
+{% block body %}
+
+<center>
+    <h2><font color="#366092">Picture Add</font></h2>
+<div class="container">
+    <form name="frm" action="{% url 'owner_house_pic_add' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="form-group">
+            <label for="document">Picture</label>
+            <input class="form-control" type="file" name="document" id="document">
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        {{msg}}
+        <input type="hidden"  name="house_id" value="{{house_id}}" >
+
+    </form>
+</div>
+</center>
+{% endblock %}

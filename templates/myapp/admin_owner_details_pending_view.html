@@ -1,0 +1,74 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}Manager Details{% endblock %}
+{% block body %}
+<style>
+.tablecenterheadCSS th{
+	text-align:center;
+}
+.tablecenterheadCSS td{
+	text-align:center;
+}
+</style>
+
+<center>
+
+    <h1>Manager Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+       <!-- user_id, fname, lname,  addr, pin, email, contact, status-->
+        <div class="table-responsive-lg">
+        <table class="tablecenterheadCSS table table-hover table-bordered table-sm auto-index">
+            <thead>
+            <tr>
+                <th>Sl.No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for owner_obj in owner_list %}
+            <tbody>
+            <tr>
+                <td></td>
+                <td>{{ owner_obj.fname }} {{ owner_obj.lname }}</td>
+                <td>{{ owner_obj.addr}}, {{ owner_obj.pin}}</td>
+                <td>{{ owner_obj.email}}</td>
+                <td>{{ owner_obj.contact}}</td>
+                <td >
+                    <div class="btn-group">
+                        <a class="btn btn-success"
+                           href="../admin_owner_details_register_update?id={{ owner_obj.id }}&status=approved">Approve</a>
+                        <a class="btn btn-danger"
+                           href="../admin_owner_details_register_update?id={{ owner_obj.id }}&status=rejected">Reject</a>
+
+                    </div>
+                </td>
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+        </div>
+
+    </form>
+    </div>
+    <b>{{msg}}</b>
+</center>
+<style>
+  form
+  {
+    counter-reset: Serial;
+  }
+  table
+  {
+  }
+  .auto-index td:first-child:before
+  {
+    counter-increment: Serial;
+    content:counter(Serial);
+  }
+</style>
+{% endblock %}

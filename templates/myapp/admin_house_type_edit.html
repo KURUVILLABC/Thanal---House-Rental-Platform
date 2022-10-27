@@ -1,0 +1,24 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}House Type Update{% endblock %}
+{% block body %}
+<center>
+    <h2> House Type Settings </h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'admin_house_type_edit' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="type_name">Designation Name</label>
+	        <input class="form-control" type="text"
+				   id="type_name" name="type_name" value="{{type_name}}" required="required">
+		</div>
+		<br><br>
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Update</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        <input type="hidden" name="e_id" value="{{e_id}}">
+
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

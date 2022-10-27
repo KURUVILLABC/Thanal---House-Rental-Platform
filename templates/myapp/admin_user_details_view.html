@@ -1,0 +1,78 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}User Details{% endblock %}
+{% block body %}
+<style>
+.tablecenterheadCSS th{
+	text-align:center;
+}
+.tablecenterheadCSS td{
+	text-align:center;
+}
+</style>
+
+<center>
+
+    <h1>User Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+       <!-- user_id, fname, lname, dob, gender, addr, pin, email, contact, status-->
+        <div class="table-responsive-lg">
+        <table class="tablecenterheadCSS table table-hover table-bordered table-sm auto-index">
+            <thead>
+            <tr>
+                <th>Sl.No</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for user_obj in user_list %}
+            <tbody>
+            <tr>
+                <td></td>
+                <td>{{ user_obj.fname }} {{ user_obj.lname }}</td>
+                <td>{{ user_obj.gender}}</td>
+                <td>{{ user_obj.dob}}</td>
+                <td>{{ user_obj.addr}}, {{ user_obj.pin}}</td>
+                <td>{{ user_obj.email}}</td>
+                <td>{{ user_obj.contact}}</td>
+                <td >
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-primary"
+                           href="../admin_user_docs_view?user_id={{ user_obj.user_id }}">Documents</a>
+                        <a class="btn btn-danger"
+                           href="../admin_user_details_delete?id={{ user_obj.id }}">Delete</a>
+
+                    </div>
+                </td>
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+        </div>
+
+    </form>
+    </div>
+    <b>{{msg}}</b>
+</center>
+<style>
+  form
+  {
+    counter-reset: Serial;
+  }
+  table
+  {
+  }
+  .auto-index td:first-child:before
+  {
+    counter-increment: Serial;
+    content:counter(Serial);
+  }
+</style>
+{% endblock %}

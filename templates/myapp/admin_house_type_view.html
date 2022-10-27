@@ -1,0 +1,65 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}House Type Details{% endblock %}
+{% block body %}
+
+<style>
+.tablecenterheadCSS th{
+	text-align:center;
+}
+.tablecenterheadCSS td{
+	text-align:center;
+}
+</style>
+<center>
+
+    <h1>House Type Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+
+        <table class="tablecenterheadCSS table table-striped table-bordered auto-index">
+            <thead>
+            <tr>
+                <th>Sl.No</th>
+                <th>House Type</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for type_obj in type_list %}
+            <tbody>
+            <tr>
+                <td></td>
+                <td>{{ type_obj.type_name }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-warning" href='../admin_house_type_edit?id={{ type_obj.id }}'>Edit</a>
+                        <a class="btn btn-danger" href='../admin_house_type_delete?id={{ type_obj.id }}'>Delete</a>
+                        <!--<a class="btn btn-primary" href='../?category_id={{ ev.id }}'>Sub Category</a>-->
+                    </div>
+                </td>
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+        <br>
+             <a class="btn btn-info" href="{% url 'admin_house_type_add'%}">Add New</a>
+    </form>
+    </div>
+    <b>{{msg}}</b>
+</center>
+<style>
+  form
+  {
+    counter-reset: Serial;
+  }
+  table
+  {
+  }
+  .auto-index td:first-child:before
+  {
+    counter-increment: Serial;
+    content:counter(Serial);
+  }
+</style>
+{% endblock %}

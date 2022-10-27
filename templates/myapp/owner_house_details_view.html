@@ -1,0 +1,101 @@
+{% extends 'myapp/owner_base.html' %}
+{% load static %}
+{% block title %}House Details{% endblock %}
+{% block body %}
+<style>
+.tablecenterheadCSS th{
+	text-align:center;
+}
+.tablecenterheadCSS td{
+	text-align:center;
+}
+</style>
+
+<center>
+
+    <h1>House Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+<!--#4. house_details - id, user_id, house_name, house_type_id, rent_amt, rent_advance, addr1, addr2, addr3, pin, house_decp, house_rules, house_facilities, status-->
+        <div class="table-responsive-lg">
+        <table class="tablecenterheadCSS table table-hover table-bordered table-sm auto-index">
+            <thead>
+            <tr>
+                <th>Sl.No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Rent Amount</th>
+                <th>Rent Advance</th>
+                <th>Address</th>
+                <th>Description</th>
+                <th>Rules</th>
+                <th>Facilities</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for hd_obj in house_list %}
+            <tbody>
+            <tr>
+                <td></td>
+                <td>{{ hd_obj.house_name }} </td>
+                <td>
+                {% for ht_obj in type_list %}
+                {% if hd_obj.house_type_id == ht_obj.id  %}
+                    {{ ht_obj.type_name}}
+                {% endif %}
+                {% endfor %}
+                </td>
+                <td>{{ hd_obj.rent_amt}}</td>
+                <td>{{ hd_obj.rent_advance}}</td>
+                <td>{{ hd_obj.addr1}}, {{ hd_obj.addr2}}, {{ hd_obj.addr3}}, {{ hd_obj.pin}}</td>
+                <td>{{ hd_obj.house_descp}}</td>
+                <td>{{ hd_obj.house_rules}}</td>
+                <td>{{ hd_obj.house_facilities}}</td>
+                <td>{{ hd_obj.status}}</td>
+                <td >
+                    <div class="btn-group-vertical">
+                        {% if hd_obj.status == 'approved' %}
+                        <a class="btn btn-primary"
+                           href="../owner_house_pic_view?house_id={{ hd_obj.id }}">Pictures</a>
+                        <!--<a class="btn btn-primary"
+                           href="../?house_id={{ hd_obj.id }}">Rent History</a>-->
+                        {% endif %}
+                        {% if hd_obj.status == 'pending' %}
+                        <a class="btn btn-danger"
+                           href="../owner_house_details_delete?id={{ hd_obj.id }}">Delete</a>
+                        <a class="btn btn-warning"
+                           href="../owner_house_details_edit?id={{ hd_obj.id }}">Edit</a>
+                        <br>
+                        {% endif %}
+                        <br>
+                        <a class="btn btn-success" href="{{ hd_obj.house_location}}">Map</a>
+
+                    </div>
+                </td>
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+        </div>
+
+    </form>
+    </div>
+    <b>{{msg}}</b>
+</center>
+<style>
+  form
+  {
+    counter-reset: Serial;
+  }
+  table
+  {
+  }
+  .auto-index td:first-child:before
+  {
+    counter-increment: Serial;
+    content:counter(Serial);
+  }
+</style>
+{% endblock %}

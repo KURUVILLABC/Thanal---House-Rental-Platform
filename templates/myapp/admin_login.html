@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}
+    Admin Login
+{% endblock %}
+{% block body %}
+
+<body>
+<section>
+    <center>
+        <div class="grid-container">
+  <div>
+     <h2><font color="#366092">Admin Login</font></h2>
+            <img src="{% static 'myapp/images/admin12.png'%}" width="150" height="150">
+        <div class="container">
+        <form role="form" name="frm" method="post" action="{% url 'admin_login' %}" >
+         {% csrf_token %}
+         <div class="form-group">
+             <label for="un">User Name :</label>
+             <input class="form-control" type="text" name="un" id="un">
+         </div>
+         <div class="form-group">
+             <label for="pwd">Password :</label>
+             <input class="form-control" type="password" name="pwd" id="pwd">
+         </div>
+         <button type="submit"
+         class="button button2" id="bt" name="bt">Login</button>
+         <button type="reset"
+         class="button button2" id="rt" name="rt">Reset</button>
+
+    </form>
+            </div>
+      </div>
+    </div>
+        {% autoescape off %}{{ msg1 }}{% endautoescape %}
+    </center>
+
+    <script src="{% static './myapp/scripts/loginscript.js' %}"></script>
+    </section>
+</body>
+{% endblock %}

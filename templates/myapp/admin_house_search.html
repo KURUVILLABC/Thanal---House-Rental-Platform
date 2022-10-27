@@ -1,0 +1,36 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}House Search{% endblock %}
+{% block body %}
+<center>
+    <h2><font color="#366092">House Search</font></h2>
+    <div class="container">
+    <form name="frm"  role="form" action="{% url 'admin_house_search' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="app_name">Keyword</label>
+                <input class="form-control" type="text" name="app_name" placeholder="keyword" id="app_name">
+            </div>
+            <div class="form-group">
+                <label>Filter :</label>
+			    <div class="custom-control custom-radio custom-control-inline">
+  				    <input type="radio" class="custom-control-input" id="title" name="filter" value="title" checked>
+  				    <label class="custom-control-label" for="title">Description</label>
+			    </div>
+			    <div class="custom-control custom-radio custom-control-inline">
+  				    <input type="radio" class="custom-control-input" id="facilities" name="filter" value="facilities">
+  				    <label class="custom-control-label" for="facilities">Facilities</label>
+			    </div>
+                <div class="custom-control custom-radio custom-control-inline">
+  				    <input type="radio" class="custom-control-input" id="addr" name="filter" value="addr">
+  				    <label class="custom-control-label" for="addr">Address</label>
+			    </div>
+
+		    </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Search</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        {{msg}}
+        </form>
+    </div>
+</center>
+{% endblock %}

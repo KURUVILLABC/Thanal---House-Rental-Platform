@@ -1,0 +1,108 @@
+{% extends 'myapp/base.html' %} {% load static %} {% block title %} House Rental
+System {% endblock %} {% block background %}background="{% static
+'./myapp/images/house.jpg' %}"{% endblock %} {% block body %}
+<div class="back">
+  <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="">
+  <br><br>
+  <span class="jumboText"><br><br>Find your perfect home</span>
+</div>
+<footer class="small bg-light">
+  <div class="container py-3 py-sm-5">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <h6>Quick links</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">What's new</a></li>
+          <li><a href="#">Featured Product</a></li>
+          <li><a href="#">News letter</a></li>n
+          <li><a href="#">My account</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <h6>Information</h6>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'about' %}">About us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="https://www.google.com/maps/place/Rajagiri+School+of+Engineering+%26+Technology/@9.9934657,76.3559022,17z/data=!3m1!4b1!4m5!3m4!1s0x3b080ca6b98ae0f7:0xc81786bb40617774!8m2!3d9.9934604!4d76.3580909">Location</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <h6>Follow us</h6>
+        <ul class="list-unstyled">
+          <li><a href="https://www.facebook.com/profile.php?id=100083808180783">Facebook</a></li>
+          <li><a href="https://www.instagram.com/thanalhouserentals/">Instagram</a></li>
+          <li><a href="https://twitter.com/Thanal88798387">Twitter</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <address>
+          <strong></strong><br /><br />
+          <br />
+          <abbr title="Telephone">T:</abbr
+          ><a href="tel:+918330036512">(91) 833-003-5612</a><br />
+          <abbr title="Mail">M:</abbr
+          ><a href="www.thanalhouserental@gmail.com">thanalhouserental@gmail.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-9">
+        <ul class="list-inline">
+          <li class="list-inline-item">&copy; 2017 Web Company, Inc.</li>
+          <li class="list-inline-item">All rights reserved.</li>
+          <li class="list-inline-item">
+            <a href="#">Terms of use and privacy policy</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="dropdown dropup p-0">
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm dropdown-toggle"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Visit other sites:
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a href="#" class="dropdown-item">www.otherwebsite.com</a>
+            <a href="#" class="dropdown-item">www.newwebsite.com</a>
+            <a href="#" class="dropdown-item">www.oldwebsite.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .back {
+    width: 100%;
+  }
+  .back img {
+    width: 100%;
+  }
+  .jumboText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 70px;
+    text-align: center;
+  }
+  .search {
+    width: 40vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 400%);
+  }
+</style>
+{% endblock %}

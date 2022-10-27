@@ -1,0 +1,23 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}House Type Settings{% endblock %}
+{% block body %}
+<center>
+    <h2>House Type Settings</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'admin_house_type_add' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="type_name">House Type</label>
+	        <input class="form-control" type="text"
+				   id="type_name" name="type_name" placeholder="house type" required="required">
+		</div>
+		<br><br>
+	    <button type="submit" class="btn btn-success" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-warning" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

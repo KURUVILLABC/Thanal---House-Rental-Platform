@@ -1,0 +1,64 @@
+{% extends 'myapp/owner_base.html' %}
+{% load static %}
+{% block title %}New House Registration{% endblock %}
+{% block body %}
+<center>
+	<!--#4. house_details - id, user_id, house_name, house_type_id, rent_amt, rent_advance, addr1, addr2, addr3, pin, house_descp, house_rules, house_facilities, status-->
+    <h2>New House Registration</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'owner_house_details_add' %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+			<label for="house_name">Name</label>
+	        <input class="form-control" type="text"  id="house_name" name="house_name"
+				   placeholder="Name" required="required">
+		</div>
+	    <div class="form-group">
+			<label for="house_type_id">Type</label>
+			<select  name="house_type_id" id="house_type_id" class="form-control" >
+    			{% for ht_obj in type_list%}
+    			<option value="{{ht_obj.id}}">{{ht_obj.type_name}}</option>
+    			{% endfor %}
+			</select>
+		</div>
+	    <div class="form-group">
+			<label for="rent_amt">Rent Amount</label>
+	        <input type="text"  class="form-control" id="rent_amt" name="rent_amt">
+		</div>
+		<div class="form-group">
+			<label for="rent_advance">Rent Advance</label>
+	        <input type="text"  class="form-control" id="rent_advance" name="rent_advance">
+		</div>
+		<div class="form-group">
+			<label for="addr1">Address</label>
+	        <input class="form-control" type="text"  id="addr1" name="addr1" placeholder="Street" >
+			<input class="form-control" type="text"  id="addr2" name="addr2" placeholder="City" >
+			<input class="form-control" type="text"  id="addr3" name="addr3" placeholder="State" >
+            <input type="text"  class="form-control" id="pin" name="pin" placeholder="pin" >
+		</div>
+	    <div class="form-group">
+			<label for="house_descp">Description</label>
+			<textarea  class="form-control" id="house_descp" name="house_descp" placeholder="House description" required></textarea>
+		</div>
+		<div class="form-group">
+			<label for="house_rules">Rules</label>
+			<textarea  class="form-control" id="house_rules" name="house_rules" placeholder="House rules"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="house_facilities">Facilities</label>
+	        <textarea class="form-control" id="house_facilities" name="house_facilities" placeholder="House facilities"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="house_location">House Location</label>
+	        <input type="url"  class="form-control" id="house_location" name="house_location" required>
+		</div>
+        <br><br>
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Register</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

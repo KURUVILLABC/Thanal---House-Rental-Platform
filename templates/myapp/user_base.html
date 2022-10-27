@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body {% block background %}{% endblock %}>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'user_home'%}">User Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'user_house_search'%}">Search House</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'user_house_pool_advertisement_all_view'%}">House Pool Postings</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown">My Rental</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{%url 'user_house_agreement_pending_view'%}">Pending Agreements</a>
+            <a class="dropdown-item" href="{%url 'user_house_agreement_active_view'%}">Active Rental</a>
+            <a class="dropdown-item" href="{%url 'user_house_request_view'%}">Rental Requests</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{%url 'user_house_pool_advertisement_view'%}">House Pool Postings</a>
+            <a class="dropdown-item" href="{%url 'user_house_pooling_request_pending_view'%}">House Pool Requests</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown">Reports</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{%url 'user_house_request_report_view'%}">Rental Requests</a>
+            <a class="dropdown-item" href="{%url 'user_house_agreement_report_view'%}">Rental History</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{%url 'user_transaction_details_view'%}">Transactions</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{%url 'user_house_pooling_request_report_view'%}">House Pool</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{%url 'user_feedback_view'%}">House Feedbacks</a>
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown">Profile</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'user_details_update'%}">My Profile</a>
+            <a class="dropdown-item" href="{% url 'user_docs_view'%}">My Documents</a>
+            <a class="dropdown-item" href="{% url 'user_notifications_view'%}">My Notifications</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'user_changepassword'%}">Change Password</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_logout'%}">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+   {% block body %}{% endblock %}
+
+<style>
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width:100%;
+	height: 100vh;
+	color: #fff;
+	background: linear-gradient(-45deg, white, grey, lightgrey);
+	background-size: 400% 400%;
+	position: relative;
+	animation: change 9s ease-in-out infinite;
+}
+
+@keyframes change
+{
+	10%{
+		background-position: 0% 50%;
+	}
+	50%{
+		background-position: 100% 50%;
+	}
+	100%{
+		background-position: 0% 50%;
+	}
+}
+}
+</style>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

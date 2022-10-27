@@ -1,0 +1,61 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}Staff Details Edit{% endblock %}
+{% block body %}
+<center>
+    <h2>Staff Details Edit</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'admin_staff_details_edit' %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+			<label for="fname">Name</label>
+	        <input class="form-control" type="text"
+				   id="fname" name="fname" value="{{staff_obj.fname}}" required="required">
+			<input class="form-control" type="text"
+				   id="lname" name="lname" value="{{staff_obj.lname}}" required="required">
+		</div>
+	    <div class="form-group">
+			<label for="staff_code">Staff Code</label>
+	        <input type="text"  class="form-control"
+				   id="staff_code" name="staff_code" value="{{staff_obj.staff_code}}" disabled>
+		</div>
+		<div class="form-group">
+			<label for="desg_id">Designation</label>
+			<select  name="desg_id" id="desg_id" class="form-control" >
+    			{% for designation_obj in designation_list%}
+					{%if designation_obj.id == staff_obj.desg_id %}
+    				<option value="{{designation_obj.id}}" selected>{{designation_obj.designation}}</option>
+					{%else%}
+					<option value="{{designation_obj.id}}">{{designation_obj.designation}}</option>
+					{%endif%}
+    			{% endfor %}
+			</select>
+		</div>
+	    <div class="form-group">
+			<label for="addr">Address</label>
+			<textarea class="form-control"
+					  id="addr" name="addr" placeholder="Address" >{{staff_obj.addr}}</textarea>
+            <input type="text"  class="form-control"
+				   id="pin" name="pin" value="{{staff_obj.pin}}" >
+		</div>
+	    <div class="form-group">
+			<label for="contact">Contact</label>
+	        <input type="text"  class="form-control"
+				   id="contact" name="contact" value="{{staff_obj.contact}}">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+	        <input type="email" class="form-control"
+				   id="email" name="email" value="{{staff_obj.email}}"></td>
+		</div>
+        <br><br>
+		<input type="hidden" name="e_id" value="{{e_id}}">
+	    <button type="submit" class="btn btn-success" id="bt" name="bt">Update</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}
